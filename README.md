@@ -1,5 +1,17 @@
-Pairwise Independent Combinatorial Testing
-==========================================
+# Pairwise Independent Combinatorial Testing
+
+## My fork subdoc
+
+- if on Windows, then just download latest release
+- if on Linux, build the tool using build documentation below
+- example test input data are in the folder `./test-data`
+- generate output like this: `pict path/to/the/test-data.txt`
+
+## Detailed documentation on how to write input data files
+
+- check [THIS](./doc/pict.md)
+
+## Original documentation
 
 PICT generates test cases and test configurations. With PICT, you can generate tests that are more effective than manually generated tests and in a fraction of the time required by hands-on test case design.
 
@@ -14,37 +26,41 @@ For instance, if you wish to create a test suite for partition and volume creati
     Cluster size:  512, 1024, 2048, 4096, 8192, 16384, 32768, 65536
     Compression:   On, Off
 
-There are thousands of possible combinations of these values. It would be  difficult to test all of them in a reasonable amount of time. Instead, we settle on testing all possible pairs of values. For example, **{Single, FAT}** is one pair, **{10, Slow}** is another; one test case can cover many pairs. Research shows that testing all pairs is an effective alternative to exhaustive testing and much less costly. It will provide very good coverage and the number of test cases will remain manageable.
+There are thousands of possible combinations of these values. It would be difficult to test all of them in a reasonable amount of time. Instead, we settle on testing all possible pairs of values. For example, **{Single, FAT}** is one pair, **{10, Slow}** is another; one test case can cover many pairs. Research shows that testing all pairs is an effective alternative to exhaustive testing and much less costly. It will provide very good coverage and the number of test cases will remain manageable.
 
 # More information
 
-See **[doc/pict.md](https://github.com/Microsoft/pict/blob/main/doc/pict.md)** for detailed documentation on PICT and http://pairwise.org has details on this testing methododology. 
+See **[doc/pict.md](https://github.com/Microsoft/pict/blob/main/doc/pict.md)** for detailed documentation on PICT and http://pairwise.org has details on this testing methododology.
 
 The most recent **pict.exe** is available at https://github.com/microsoft/pict/releases/.
 
 # Contributing
 
 PICT consists of the following projects:
- * **api**: The core combinatorial engine,
- * **cli**: PICT.EXE command-line tool,
- * **clidll**: PICT.EXE client repackaged as a Windows DLL to be used in-proc,
- * **api-usage**: A sample of how the engine API can be used,
- * **clidll-usage**: A sample of how the PICT DLL is to be used.
+
+- **api**: The core combinatorial engine,
+- **cli**: PICT.EXE command-line tool,
+- **clidll**: PICT.EXE client repackaged as a Windows DLL to be used in-proc,
+- **api-usage**: A sample of how the engine API can be used,
+- **clidll-usage**: A sample of how the PICT DLL is to be used.
 
 ## Building and testing on Windows with MsBuild
+
 Use **pict.sln** to open the solution in Visual Studio 2022. You will need VC++ build tools installed. See https://www.visualstudio.com/downloads/ for details.
 
-PICT uses MsBuild for building. **_build.cmd** script in the root directory will build both Debug and Release from the command-line.
+PICT uses MsBuild for building. **\_build.cmd** script in the root directory will build both Debug and Release from the command-line.
 
-The **test** folder contains all that is necessary to test PICT. You need Perl to run the tests. **_test.cmd** is the script that does it all.
+The **test** folder contains all that is necessary to test PICT. You need Perl to run the tests. **\_test.cmd** is the script that does it all.
 
 The test script produces a log: **dbg.log** or **rel.log** for the Debug and Release bits respectively. Compare them with their committed baselines and make sure all the differences can be explained.
 
->There are tests which randomize output which typically make it different on each run. These results should be masked in the baseline but currently aren't.
+> There are tests which randomize output which typically make it different on each run. These results should be masked in the baseline but currently aren't.
 
-## Building on Linux, OS/X, *BSD, etc.
+## Building on Linux, OS/X, \*BSD, etc.
+
 PICT uses CMake to build on Linux.
 Assuming installation of CMake and C++ toolchain, following set of commands will build and run tests in the directory `build`
+
 ```
 > cmake -DCMAKE_BUILD_TYPE=Release -S . -B build
 > cmake --build build
@@ -68,4 +84,3 @@ Once built, you can run it with a sample model as follows
 To use your own models, please execute
 
     podman run -it --rm -v ./<local-dir>:/var/pict:Z pict:latest <your-model-file> [<pict-options>]
-
