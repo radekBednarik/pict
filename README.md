@@ -5,7 +5,8 @@
 - if on Windows, then just download latest release
 - if on Linux, build the tool using build documentation below
 - example test input data are in the folder `./test-data`
-- generate output like this: `pict path/to/the/test-data.txt`
+- generate output like this: `./pict path/to/the/test-data.txt` on Linux or WSL
+- if you want to output to json, run this: `./pict path/to/test-data.txt -f:json > filepath/to/the/jsonfile.json`
 
 ## Detailed documentation on how to write input data files
 

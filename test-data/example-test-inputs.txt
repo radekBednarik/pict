@@ -1,4 +1,4 @@
-OS: Windows 11, Windows 10, Linux, macOS
+OS: Windows-11, Windows-10, Linux, macOS
 Browser: Chrome, Edge, Firefox, Safari
 Viewport: desktop, mobile
 
