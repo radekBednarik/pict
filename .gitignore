@@ -24,3 +24,5 @@ pict-benchmark
 .DS_Store
 build
 .vscode/settings.json
+.config/zellij.kdl
+go
