@@ -132,6 +132,18 @@ Parameters can be compared to other parameters, like in this example:
     IF [LANG_1] = [LANG_2]
     THEN [OS_1] <> [OS_2] AND [SKU_1] <> [SKU_2];
 
+The constraint language also supports two functions for working with negative values:
+
+    ISNEGATIVE([ParameterName])  # true when the selected value uses the current negative prefix (default: ~, configurable via /n)
+    ISPOSITIVE([ParameterName])  # true when the selected value does not use the negative prefix
+
+Details about negative values are described later in the Negative Testing section.
+
+Both functions can also be called without arguments:
+
+    ISNEGATIVE()   # expands to ISNEGATIVE([P1]) OR  ISNEGATIVE([P2]) OR  ... for all non-result parameters
+    ISPOSITIVE()   # expands to ISPOSITIVE([P1]) AND ISPOSITIVE([P2]) AND ... for all non-result parameters
+
 ## Unconditional Constraints (Invariants)
 
 An invariant declares an always valid limitation of a domain:
@@ -475,6 +487,10 @@ These are best to avoid in any case. When seeding is used, you will be warned if
     | ParameterName IN { ValueSet }
     | ParameterName NOT IN { ValueSet }
     | ParameterName Relation ParameterName
+    | ISNEGATIVE ( ParameterName )
+    | ISPOSITIVE ( ParameterName )
+    | ISNEGATIVE ( )
+    | ISPOSITIVE ( )
 
     ValueSet       :: =
       Value
