@@ -18,7 +18,9 @@
 *.ipch
 *.VC.*db*
 pict
+pict-benchmark
 *.o
+*.so
 .DS_Store
 build
 .vscode/settings.json
